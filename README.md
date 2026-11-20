@@ -37,8 +37,16 @@ practice nothing is exactly finite. A second standard tool, the *singular value 
 you get the best *r*-dimensional summary of the past *for predicting the future*, plus a receipt:
 a guarantee of how much you lost by dropping the rest.
 
+![The whole idea in four steps: a table of pasts by futures; identical rows are the same state; rows that are blends of others add nothing (rank); keeping the most important directions loses only what the grey bars measure.](docs/img/idea.png)
+*The whole idea in four steps: a table of pasts by futures; identical rows are the same state; rows that are blends of others add nothing (rank); keeping the most important directions loses only what the grey bars measure.*
+
+
 That's it. **Table of pasts by futures → its rows are states → keep the important directions,
 with a guarantee.** The rest of this page is the same three steps in different clothes.
+
+![Many pasts funnel through a small state, the few things worth remembering, ranked by importance, and fan out to futures. Dropping the faint bars has a guaranteed cost.](docs/img/bowtie.png)
+*Many pasts funnel through a small state, the few things worth remembering, ranked by importance, and fan out to futures. Dropping the faint bars has a guaranteed cost.*
+
 
 ---
 
@@ -55,11 +63,19 @@ get *weighted automata*, where the number of states is the rank of the table (Fl
 Surprisingly simple questions about these machines are still open: whether a sequence defined by a
 linear recurrence ever hits zero (the *Skolem problem*) is not known to be decidable.
 
+![For "binary numbers divisible by 3", the table of beginnings by endings has only three different rows, and those are exactly the three states of the smallest machine (remainder 0, 1, 2).](docs/img/automata.png)
+*For "binary numbers divisible by 3", the table of beginnings by endings has only three different rows, and those are exactly the three states of the smallest machine (remainder 0, 1, 2).*
+
+
 **Machine learning theory: learning automata from questions.** Studies how to learn a hidden
 machine by experimenting with it. Angluin's L\* algorithm learns a finite machine by filling in a
 small corner of the table, asking "is this string accepted?". *Spectral learning* does the same
 with statistics from data instead of questions and an SVD instead of exact bookkeeping. It learns
 hidden Markov models without getting stuck in bad local optima, as iterative training can.
+
+![A learner fills a small corner of the infinite table from data or questions; the SVD shows two big directions, which recovers a 2-state hidden machine.](docs/img/learning.png)
+*A learner fills a small corner of the infinite table from data or questions; the SVD shows two big directions, which recovers a 2-state hidden machine.*
+
 
 **Category theory: minimal realization as a factorization.** The table is a map from pasts to
 futures. Any machine factors that map as "past → state → future", and the minimal machine is the
@@ -67,12 +83,20 @@ smallest thing that fits in the middle. *Reachable* states (the past side) and *
 differences (the future side) are mirror images, the algebra/coalgebra duality, and this is why
 Brzozowski's odd-looking "reverse it twice" minimization algorithm works.
 
+![The table factors as pasts → states → rows: every state is reached (onto), and different states behave differently (one-to-one). With numbers, the middle has size equal to the rank.](docs/img/category.png)
+*The table factors as pasts → states → rows: every state is reached (onto), and different states behave differently (one-to-one). With numbers, the middle has size equal to the rank.*
+
+
 **Control theory: realization theory and model reduction.** Studies how to rebuild the inside of a
 black box (an aircraft wing, a circuit) from input–output measurements, then simplify it. The table
 maps past inputs to future outputs; its rank is the size of the smallest internal state that
 explains it (the Ho–Kalman theorem). *Balanced truncation* ranks internal states by how easy they
 are both to push and to see, discards the weak ones, and guarantees the simplified model is
 close. Engineers use this every day.
+
+![Past inputs push a black box and its future outputs are measured; ranking its 8 internal states shows 4 matter, and the 4-state simplified model gives practically the same output.](docs/img/control.png)
+*Past inputs push a black box and its future outputs are measured; ranking its 8 internal states shows 4 matter, and the 4-state simplified model gives practically the same output.*
+
 
 **Dynamical systems: the Koopman operator.** Studies how things move: fluids, planets, weather.
 The motion of points can be very nonlinear, but the way *measurements* of the system change over
@@ -82,20 +106,36 @@ that outlast the noise. In fluid dynamics this is *dynamic mode decomposition*. 
 says a single measurement recorded over a window of time is enough to reconstruct the state, which
 is exactly how you build the table from one time series.
 
+![A damped pendulum's points spiral nonlinearly, but a measurement of it (its angle) is a sum of a few decaying waves. And one measurement plotted against delayed copies of itself rebuilds the shape of the Lorenz attractor.](docs/img/koopman.png)
+*A damped pendulum's points spiral nonlinearly, but a measurement of it (its angle) is a sum of a few decaying waves. And one measurement plotted against delayed copies of itself rebuilds the shape of the Lorenz attractor.*
+
+
 **Probability: hidden Markov models.** Studies systems whose real state is hidden and seen only
 through noisy signals. The table is the probability of each past followed by each future, and the
 hidden state is the bottleneck in the middle: given it, past and future are independent. The
 standard forward and backward algorithms are the two halves of the factorization.
+
+![The past and future of a noisy signal are linked only through the hidden state at "now": the forward algorithm summarises the past into it, the backward algorithm summarises the future.](docs/img/hmm.png)
+*The past and future of a noisy signal are linked only through the hidden state at "now": the forward algorithm summarises the past into it, the backward algorithm summarises the future.*
+
 
 **Physics of complexity: causal states and ε-machines.** Studies how much memory a process really
 has. Group pasts by the future they predict; the groups are *causal states*, and the resulting
 minimal predictor is the *ε-machine*. This is Myhill–Nerode for random processes, and it gives a
 principled measure of how complex a process is.
 
+![In the Even Process (1s come in even-length runs), pasts sort into two groups by what they predict next, and those groups are the two states of the ε-machine.](docs/img/epsilon.png)
+*In the Even Process (1s come in even-length runs), pasts sort into two groups by what they predict next, and those groups are the two states of the ε-machine.*
+
+
 **Statistics: canonical correlation analysis (CCA).** Studies which aspects of one dataset
 correlate most strongly with which aspects of another. Apply it to (past, future) and you get the
 most predictive summaries of the past, ranked. For many processes this is exactly the SVD of the
 table, with the right normalization.
+
+![Summarise a past window and a future window of a noisy signal: ranked by how well they predict each other, a few summary pairs matter and the rest are noise.](docs/img/cca.png)
+*Summarise a past window and a future window of a noisy signal: ranked by how well they predict each other, a few summary pairs matter and the rest are noise.*
+
 
 **Graphs and data: spectral clustering.** Studies how to split a network or a dataset into natural
 groups. Imagine a random walker on the data. Groups are places where it gets stuck for a long
@@ -105,11 +145,19 @@ inequality* says this easy linear-algebra version is provably close. The same ma
 *expander graphs* in theoretical computer science, and with them results like the logspace
 algorithm for undirected connectivity and a combinatorial proof of the PCP theorem.
 
+![A random walker on a point cloud rarely jumps between groups; the top eigenvectors of its step table colour the groups, and the gap after 3 eigenvalues says there are 3.](docs/img/clustering.png)
+*A random walker on a point cloud rarely jumps between groups; the top eigenvectors of its step table colour the groups, and the gap after 3 eigenvalues says there are 3.*
+
+
 **Moving data: coherent sets.** Studies regions that move together in a flowing system, like an
 ocean eddy that carries the same water for months. The table maps where things are now to where
 they are later. Its top directions find the regions that hold together while everything around
 them mixes. This is spectral clustering with time added in, and it is the version I care most
 about.
+
+![In a rocking double-gyre flow, a dye blob in a whirlpool core holds together while one near the boundary smears out; the top direction of the now → later table, computed without any dye, highlights that core.](docs/img/coherent.png)
+*In a rocking double-gyre flow, a dye blob in a whirlpool core holds together while one near the boundary smears out; the top direction of the now → later table, computed without any dye, highlights that core.*
+
 
 **Pure mathematics and physics: spectra and trace formulas.** A deep end, as a teaser. Quantum
 mechanics can evolve either the states or the measurements (the Schrödinger and Heisenberg
@@ -119,11 +167,19 @@ of a surface encodes its closed loops, in a formula with the same shape as the o
 zeros of the Riemann zeta function to the primes. "Can you hear the shape of a drum?" asks how much
 of a shape its spectrum determines.
 
+![Teaser: a round drum's closed bouncing paths are encoded in the tones it can play, much as the primes are encoded in the zeros of the Riemann zeta function (trace formulas).](docs/img/spectra.png)
+*Teaser: a round drum's closed bouncing paths are encoded in the tones it can play, much as the primes are encoded in the zeros of the Riemann zeta function (trace formulas).*
+
+
 **Brains and neural networks.** Simple learning rules for neurons (Hebbian learning) compute
 related decompositions, such as principal components. A language model's predictions form exactly this table (beginnings of
 text by continuations), and it turns out to be approximately low-rank. Transformers trained on
 data from a hidden process have been found to represent the hidden state internally, the same
 "state" as above.
+
+![Real GPT-2 log-probabilities for prompts by next words: a few directions carry most of the variation, unlike the same numbers shuffled.](docs/img/neural.png)
+*Real GPT-2 log-probabilities for prompts by next words: a few directions carry most of the variation, unlike the same numbers shuffled.*
+
 
 ---
 
