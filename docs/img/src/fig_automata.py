@@ -48,10 +48,11 @@ def make():
             va="center", color=PAST, fontsize=BASE, fontweight="bold")
     ax.text(x0 + m * cw / 2, y0 + 0.75, "endings (futures)", ha="center", va="bottom",
             color=FUT, fontsize=BASE, fontweight="bold")
-    ax.text(x0 + m * cw / 2, y0 - n * ch - 0.35,
-            "entry: is beginning+ending a multiple of 3?\nonly 3 different rows",
-            ha="center", va="top", color=INK, fontsize=BASE - 2)
-    ax.set_title("Language: binary numbers divisible by 3", loc="left", fontsize=BASE + 1,
+    mtext(ax, x0 + m * cw / 2, y0 - n * ch - 0.55, r"$H[u,v] = 1$ if $uv \in L$, else $0$",
+          ha="center")
+    mtext(ax, x0 + m * cw / 2, y0 - n * ch - 1.25, r"states $=$ distinct rows $H[u,\cdot\,]$",
+          ha="center")
+    ax.set_title(r"Language $L$: binary numbers divisible by 3", loc="left", fontsize=BASE + 1,
                  fontweight="bold", x=0.08, pad=14)
 
     fig_arrow(fig, (0.505, 0.47), (0.585, 0.47), text="3 rows =\n3 states", text_dy=0.03)

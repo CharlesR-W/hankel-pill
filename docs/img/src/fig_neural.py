@@ -37,7 +37,7 @@ def make():
     for sp in ax.spines.values():
         sp.set_visible(False)
     fig.text(0.01, 0.95, "A language model's table", fontsize=BASE + 1, fontweight="bold")
-    fig.text(0.01, 0.89, "rows: prompts   columns: next word\nentry: log-probability under GPT-2\n(darker = more likely)",
+    fig.text(0.01, 0.89, "rows: prompts   columns: next word\nentry: GPT-2 log-probability\n(darker = more likely)",
              fontsize=BASE - 2, color=MUTED, va="top")
 
     ax = fig.add_axes([0.66, 0.2, 0.32, 0.56])
@@ -60,6 +60,8 @@ def make():
             ha="right", va="bottom", color=MUTED, fontsize=BASE - 3)
     ax.set_title("Approximately low rank", loc="left", fontsize=BASE + 1,
                  fontweight="bold", x=-0.02)
+    mtext(fig, 0.01, 0.0, r"$H[p, w] = \log P(w \mid p)$, centred", va="top")
+    mtext(ax, r + 2, 0.78, rf"$H \approx$ rank $r$,  $r = {r}$", ha="left")
     fig_arrow(fig, (0.585, 0.45), (0.635, 0.45), text="SVD", text_dy=0.02)
     save(fig, "neural.png")
 

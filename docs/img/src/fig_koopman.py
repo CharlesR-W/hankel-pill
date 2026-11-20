@@ -76,7 +76,7 @@ def make():
     gap = 2.6
     ax.plot(tt, th, color=PAST, lw=4, alpha=0.4)
     ax.plot(tt, recon, color=INK, lw=1.4, ls=(0, (4, 2)))
-    ax.text(41, 0, "angle of the\nblack path", ha="left", va="center", color=PAST, fontsize=BASE - 2)
+    ax.text(41, 0, r"$g$ = angle of" "\nthe black path", ha="left", va="center", color=PAST, fontsize=BASE - 2)
     for k, c in enumerate(pairs[:3]):
         off = -gap * (k + 1) - 0.6
         sc = 1.0 if np.abs(c).max() > 0.3 else 10.0
@@ -95,8 +95,11 @@ def make():
             fontsize=BASE - 2)
     ax.set_title("Measurements evolve linearly", loc="left", fontsize=BASE + 1,
                  fontweight="bold")
-    ax.text(0.0, 1.0, "a sum of a few decaying waves (modes)", transform=ax.transAxes,
-            fontsize=BASE - 2, color=MUTED, va="top")
+    mtext(ax, 0.0, 1.0, r"$(Kg)(x) = g(T(x))$:  linear in $g$", transform=ax.transAxes,
+          va="top")
+    mtext(fig, 0.35, -0.04, r"$g(x_t) \approx \Sigma_i\, c_i\, \lambda_i^{\,t}$  (a few decaying waves)",
+          va="top")
+    mtext(fig, 0.02, -0.04, r"$x_{t+1} = T(x_t)$  (nonlinear)", va="top")
 
     # C: Takens delay embedding of Lorenz
     def lorenz(t, v, s=10, r=28, b=8 / 3):
@@ -112,15 +115,16 @@ def make():
     axs.axis("off")
     axs.set_title("One measurement rebuilds the state", loc="left", fontsize=BASE + 1,
                   fontweight="bold", x=-0.02)
-    axs.text(6.1, 0, "x(t)", ha="left", va="center", fontsize=BASE - 1, color=FUT)
+    axs.text(6.1, 0, "y(t)", ha="left", va="center", fontsize=BASE - 1, color=FUT)
     ax3 = fig.add_axes([0.765, -0.02, 0.21, 0.6], projection="3d")
     n = len(x) - 2 * lag
     ax3.plot(x[2 * lag:2 * lag + n], x[lag:lag + n], x[:n], color=STATE, lw=0.5, alpha=0.8)
     ax3.set_axis_off()
     ax3.view_init(elev=22, azim=-55)
-    ax3.text2D(0.5, 0.14, "plot x(t) against x(t−τ), x(t−2τ):\nthe shape of the Lorenz attractor reappears",
+    ax3.text2D(0.5, 0.14, "its rows rebuild the Lorenz attractor",
                transform=ax3.transAxes, ha="center", va="top", fontsize=BASE - 3,
                color=MUTED)
+    mtext(fig, 0.745, -0.04, r"$H[t,k] = y(t - k\tau)$:  one signal $\to$ a table", va="top")
     fig_arrow(fig, (0.86, 0.6), (0.86, 0.52), lw=2, ms=18)
     save(fig, "koopman.png")
 

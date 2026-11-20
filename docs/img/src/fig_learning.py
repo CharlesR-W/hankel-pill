@@ -64,9 +64,8 @@ def make():
             fontsize=BASE - 3, color=FUT)
     ax.text(gx0 - 0.08, gy1 - n_big * c / 2, "pasts →", ha="right", va="center",
             fontsize=BASE - 3, color=PAST, rotation=270)
-    ax.text(gx0 + n_big * c / 2, gy1 - n_big * c - 0.12,
-            "estimated: how often\npast-then-future occurs", ha="center", va="top",
-            fontsize=BASE - 3, color=MUTED)
+    mtext(ax, gx0 + n_big * c / 2, gy1 - n_big * c - 0.3,
+          r"$\hat H \approx H$  (estimated from data)", ha="center")
     arrow(ax, (7.75, 2.2), (8.35, 2.2), color=MUTED, lw=3, ms=22)
     ax.text(8.05, 2.35, "SVD", ha="center", va="bottom", fontsize=BASE - 2, color=MUTED)
 
@@ -97,8 +96,10 @@ def make():
     edge(ax, B, A, R, "", curve=-0.35)
     ax.text(12.05, 1.55, "mostly a", ha="center", va="top", fontsize=BASE - 3, color=MUTED)
     ax.text(13.45, 1.55, "mostly b", ha="center", va="top", fontsize=BASE - 3, color=MUTED)
-    ax.text(12.75, 1.0, "2 hidden states,\nno local optima", ha="center", va="top",
-            fontsize=BASE - 3, color=INK)
+    mtext(ax, 12.75, 0.95, r"$f(x_1 \ldots x_k) = \alpha^{\top} A_{x_1} \cdots A_{x_k}\, \beta$",
+          ha="center")
+    ax.text(12.75, 0.55, "one 2×2 matrix per symbol", ha="center", va="center",
+            fontsize=BASE - 3, color=MUTED)
     ax.set_aspect("equal")
     save(fig, "learning.png")
 

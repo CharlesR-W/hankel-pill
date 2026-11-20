@@ -104,13 +104,18 @@ def make():
     ax.set_yticks([])
     ax.set_xticks([1, 2, 3, 5, 10])
     ax.spines["left"].set_visible(False)
-    ax.set_xlabel("directions, most important first", fontsize=BASE - 2, color=MUTED)
+    ax.set_xlabel("directions, ranked", fontsize=BASE - 2, color=MUTED)
     ax.text(2.0, 5.25, "keep top r = 3", ha="center", color=STATE, fontsize=BASE - 1,
             fontweight="bold")
     ax.annotate("what you lose\nis bounded by\nthe grey bars", xy=(6.5, 0.6),
                 xytext=(7.0, 2.4), ha="center", va="center", fontsize=BASE - 2, color=MUTED,
                 arrowprops=dict(arrowstyle="-", color=MUTED, lw=1.0))
     ax.set_title("4  Keep the top r", loc="left", fontsize=BASE + 1, fontweight="bold")
+    for x, s in zip(X, [r"table $H[p,\,f]$",
+                        r"same state $\Leftrightarrow\ H[p,\cdot\,] = H[p',\cdot\,]$",
+                        r"$\#\,$states $=\ \mathrm{rank}\,H$",
+                        r"$H \approx \Sigma_{i \leq r}\, \sigma_i\, u_i v_i^{\top}$"]):
+        mtext(fig, x + 0.005, -0.12, s)
     save(fig, "idea.png")
 
 

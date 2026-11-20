@@ -244,3 +244,19 @@ def bowtie(ax, xc, yc, s, r, x_left, x_right, half_h=1.0, n_past=9, n_fut=9,
                 color=STATE, lw=1.6, zorder=6)
     return dict(kx0=kx0, kx1=kx1, top=kept_top, bot=kept_bot, ys=ys,
                 tail_bot=ys[-1] - bar_h / 2)
+
+
+# ---- the "math strip": one consistent style for the small formulas -----------
+MATH = "#3b4048"
+MATH_FS = BASE - 1
+
+
+def mtext(target, x, y, s, ha="left", va="center", fs=MATH_FS, transform=None, **kw):
+    """Small dark-grey mathtext label (same size and colour in every figure).
+    target: an Axes (data coords unless transform given) or a Figure (figure coords)."""
+    if hasattr(target, "transData"):
+        tr = transform if transform is not None else target.transData
+    else:
+        tr = transform if transform is not None else target.transFigure
+    return target.text(x, y, s, ha=ha, va=va, fontsize=fs, color=MATH, transform=tr,
+                       zorder=10, **kw)

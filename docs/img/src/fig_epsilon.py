@@ -26,7 +26,7 @@ def minibars(ax, x, y, probs, col, w=0.22, h=0.5, labels=False, fs=BASE - 4):
 
 def make():
     fig, ax = plt.subplots(figsize=(13, 5.0))
-    blank(ax, (0, 13.6), (-0.15, 5.4), equal=True)
+    blank(ax, (0, 13.6), (-1.0, 5.4), equal=True)
     n = len(PASTS)
     ys = np.linspace(4.45, 0.35, n)
     xs_txt, xs_bar = 1.75, 2.05
@@ -69,6 +69,8 @@ def make():
             fontsize=BASE - 1, color=INK)
     ax.text(10.7, 0.25, "Even Process: 1s come\nin runs of even length",
             ha="center", va="top", fontsize=BASE - 3, color=MUTED)
+    mtext(ax, 6.8, -0.8, r"$s(p) = P(\mathrm{future} \mid p)$,       $p \sim p' \Leftrightarrow s(p) = s(p')$",
+          ha="center")
     save(fig, "epsilon.png")
 
 

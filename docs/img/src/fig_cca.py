@@ -70,7 +70,7 @@ def make():
     axb.set_xticks(range(1, p + 1))
     axb.tick_params(labelsize=BASE - 4)
     axb.set_xlabel("summary pairs, ranked", fontsize=BASE - 2, color=MUTED)
-    axb.set_ylabel("correlation", fontsize=BASE - 2, color=MUTED)
+    axb.set_ylabel(r"correlation $\rho_i$", fontsize=BASE - 2, color=MUTED)
 
     # C: scatter for pair 1 and a weak pair
     weak = 5
@@ -86,14 +86,16 @@ def make():
         axs.set_aspect("equal")
         axs.set_xlabel("past summary", fontsize=BASE - 3, color=PAST)
         axs.set_ylabel("future summary", fontsize=BASE - 3, color=FUT)
-        axs.set_title(f"pair {pair + 1}: corr {s[pair]:.2f}", fontsize=BASE - 2,
+        axs.set_title(rf"$\rho_{{{pair + 1}}} = {s[pair]:.2f}$", fontsize=BASE - 2,
                       color=col if pair < r else MUTED, fontweight="bold")
     for x, tl in [(0.02, "A noisy signal"), (0.44, "Ranked summaries"),
                   (0.69, "Past vs future summaries")]:
         fig.text(x, 0.86, tl, fontsize=BASE + 1, fontweight="bold", ha="left")
+    mtext(fig, 0.44, 0.07, r"$H = \mathrm{Cov}(p)^{-1/2}\ \mathrm{Cov}(p, f)\ \mathrm{Cov}(f)^{-1/2}$,"
+          r"   SVD: $\rho_1 \geq \rho_2 \geq \cdots$ (the $\sigma_i$)", va="top", ha="left")
     fig.text(0.02, 0.79, "summary = a weighted sum of a window", fontsize=BASE - 2,
              color=MUTED, ha="left")
-    axb.text(2.5, 1.0, "keep 4", ha="center", va="bottom", color=STATE, fontsize=BASE - 1,
+    axb.text(3.0, 1.0, "keep r = 4", ha="center", va="bottom", color=STATE, fontsize=BASE - 1,
              fontweight="bold")
     fig_arrow(fig, (0.385, 0.45), (0.425, 0.45))
     fig_arrow(fig, (0.645, 0.45), (0.68, 0.45))

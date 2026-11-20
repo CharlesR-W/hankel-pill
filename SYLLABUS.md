@@ -244,19 +244,17 @@ bottleneck.
 
 ---
 
-## Module 11: The deep end (spectra, periodic orbits, number theory, quantum)
+## Module 11: The deep end (spectra, periodic orbits, quantum)
 
 **Big ideas.** A tour, not a course. Quantum mechanics evolves states (Schrödinger) or observables
 (Heisenberg): transfer versus Koopman. *Thermodynamic formalism*: Ruelle's transfer operators turn
 chaotic dynamics into statistical mechanics, with the leading eigenvalue giving the pressure and the
 spectral gap giving decay of correlations. *Trace formulas* equate sums over a spectrum with sums
 over periodic orbits. The *Selberg trace formula* relates Laplace eigenvalues of a hyperbolic
-surface to its closed geodesics, in a formula with the same shape as the one linking zeta zeros to
-primes. *Can one hear the shape of a drum?*: the spectrum determines a lot of geometry, but not all.
+surface to its closed geodesics. *Can one hear the shape of a drum?*: the spectrum determines a lot of geometry, but not all.
 
 **Ask about:** Heisenberg vs Schrödinger pictures; Ruelle transfer operators and zeta functions;
-Selberg trace formula and the prime geodesic theorem; explicit formulas in number theory; the
-Hilbert–Pólya idea; Weyl's law; Kac's drum and isospectral domains.
+Selberg trace formula; Weyl's law; Kac's drum and isospectral domains.
 
 **Relies on:** 7, 8. Purely for enrichment.
 
@@ -314,5 +312,5 @@ Common overstatements to avoid:
 - Spectral sparsification is about undirected graphs with nonnegative weights, not about pruning
   neural network weights.
 - Hebbian rules each compute *some* spectral object; they don't generically do spectral clustering.
-- Analogies (quantum pictures, trace formulas and primes, neural networks as flows) are analogies
+- Analogies (quantum pictures, neural networks as flows) are analogies
   unless a specific theorem is named.

@@ -63,7 +63,7 @@ def make():
             color=PAST, fontsize=BASE, fontweight="bold")
     ax.text(Tf / 2, yl * 1.7, "future output\n(what you see)", ha="center", va="top",
             color=FUT, fontsize=BASE, fontweight="bold")
-    ax.add_patch(Rectangle((-2.6, -0.2 * yl), 5.2, 0.4 * yl, fc=INK, ec=INK, zorder=5))
+    ax.add_patch(Rectangle((-3.2, -0.2 * yl), 6.4, 0.4 * yl, fc=INK, ec=INK, zorder=5))
     ax.text(0, 0, "black box", ha="center", va="center", color="white", fontsize=BASE - 3,
             fontweight="bold", zorder=6)
     ax.text(0, -yl * 1.15, "now", ha="center", va="bottom", color=MUTED, fontsize=BASE - 2,
@@ -78,10 +78,12 @@ def make():
     ax.spines["left"].set_visible(False)
     ax.set_xticks(range(1, len(hsv) + 1))
     ax.set_xlabel("internal states, ranked", fontsize=BASE - 2, color=MUTED)
-    ax.text(2.5, hsv[0] * 1.02, "keep 4", ha="center", va="bottom", color=STATE,
+    ax.text(2.5, hsv[0] * 1.02, "keep r = 4", ha="center", va="bottom", color=STATE,
             fontsize=BASE - 1, fontweight="bold")
-    ax.text(6.0, hsv[0] * 0.55, "drop 4\nerror ≤ 2 × their\ntotal height",
-            ha="center", va="center", color=MUTED, fontsize=BASE - 2)
+    ax.text(6.5, hsv[0] * 0.62, "drop 4", ha="center", va="center", color=MUTED,
+            fontsize=BASE - 2)
+    mtext(ax, 6.5, hsv[0] * 0.48, r"error $\leq 2\, \Sigma_{i>r}\, \sigma_i$", ha="center")
+    mtext(fig, 0.47, 0.0, r"bars: $\sigma_1 \geq \sigma_2 \geq \cdots$", va="top")
     ax.set_ylim(0, hsv[0] * 1.18)
     ax.set_title("Rank the hidden states", loc="left", fontsize=BASE + 1,
                  fontweight="bold", x=-0.05)
@@ -102,6 +104,8 @@ def make():
     ax.set_ylim(-2.0 * m, 1.15 * m)
     ax.set_title("Simplified model", loc="left", fontsize=BASE + 1,
                  fontweight="bold", x=-0.05)
+    mtext(fig, 0.02, 0.0, r"$H[p,f] = C\, e^{A(p+f)} B$   (input at time $-p$ $\to$ output at $+f$)",
+          va="top")
     fig_arrow(fig, (0.405, 0.45), (0.455, 0.45))
     fig_arrow(fig, (0.68, 0.45), (0.725, 0.45))
     save(fig, "control.png")

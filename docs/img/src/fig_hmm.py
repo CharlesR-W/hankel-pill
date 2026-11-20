@@ -3,7 +3,7 @@ from style import *
 
 def make():
     fig, ax = plt.subplots(figsize=(13, 5.0))
-    blank(ax, (-0.9, 11.2), (-2.0, 3.15), equal=True)
+    blank(ax, (-0.9, 11.2), (-2.6, 3.15), equal=True)
     xs = np.arange(10) * 1.1
     now = 5
     xs = xs + np.where(np.arange(10) >= now, 0.35, 0.0)
@@ -22,7 +22,8 @@ def make():
         state_circle(ax, (x, y_h), R * (1.25 if is_now else 1.0), "",
                      fc=STATE_L if is_now else "white", ec=col if is_now else MUTED,
                      lw=3 if is_now else 1.6)
-        ax.text(x, y_h, "?", ha="center", va="center", fontsize=BASE, color=MUTED, zorder=8)
+        ax.text(x, y_h, r"$x$" if is_now else "?", ha="center", va="center",
+                fontsize=BASE + (2 if is_now else 0), color=INK if is_now else MUTED, zorder=8)
         # emission
         ecol = PAST if i < now else FUT
         ax.add_patch(Rectangle((x - 0.24, y_o - 0.24), 0.48, 0.48, fc="white", ec=ecol, lw=2,
@@ -59,6 +60,10 @@ def make():
     ax.text(xs[now] - 0.2, -1.85,
             "given the hidden state now, the past tells you nothing more about the future",
             ha="center", va="center", color=INK, fontsize=BASE - 1)
+    mtext(ax, xc_p + 0.2, ya - 0.38, r"$s(p) = P(p,\, \cdot\,)$", ha="center")
+    mtext(ax, xc_f + 0.4, ya - 0.38, r"$g(f) = P(f \mid \cdot\,)$", ha="center")
+    mtext(ax, xs[now] - 0.2, -2.4,
+          r"$H[p,f] = \Sigma_x\, P(p, x)\, P(f \mid x)$,   $x$ = hidden state now", ha="center")
     save(fig, "hmm.png")
 
 

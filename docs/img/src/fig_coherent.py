@@ -93,7 +93,7 @@ def make():
     axes[1].scatter(*e2, s=1.5, color=FUT, lw=0, zorder=3)
 
     v = u2 * np.sign(u2.ravel()[np.argmax(np.abs(u2))])
-    frame(axr, "Top direction of the now → later table", stream=False)
+    frame(axr, "Top non-trivial direction of the now → later table", stream=False)
     axr.imshow(np.clip(v, 0, None), origin="lower", extent=(0, 2, 0, 1), cmap="Greens",
                vmin=0, vmax=v.max(), interpolation="bilinear", zorder=1)
     th = np.linspace(0, 2 * np.pi, 100)
@@ -101,9 +101,12 @@ def make():
              ls=(0, (3, 2)), zorder=3)
     axr.text(0.5, 0.45, "where the\ngreen blob\nstarted", ha="center", va="top",
              fontsize=BASE - 3, color=INK, zorder=3)
-    axr.text(1.95, 0.05, "dark = a region that stays together\n(computed from the flow alone, no dye)",
+    axr.text(1.95, 0.05, "dark = stays together (found without dye)",
              ha="right", va="bottom", fontsize=BASE - 2, color=MUTED, zorder=3)
     fig_arrow(fig, (0.365, 0.45), (0.405, 0.45), lw=3, ms=24)
+    mtext(fig, 0.42, 0.075, r"$H[x,y] = P(\mathrm{in}\ x\ \mathrm{now},\ \mathrm{in}\ y\ \mathrm{at}\ T)$,"
+          r"  normalised by $\sqrt{P(x)\,P(y)}$", va="top")
+    mtext(fig, 0.42, 0.015, r"shown: 2nd singular vector of $H$ (the 1st is trivial)", va="top")
     save(fig, "coherent.png")
 
 

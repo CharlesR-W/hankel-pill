@@ -71,6 +71,9 @@ def make():
     ax.set_xlabel("directions, ranked", fontsize=BASE - 2, color=MUTED)
     ax.annotate("", xy=(3.6, lam[3] + 0.02), xytext=(3.6, lam[2] - 0.01),
                 arrowprops=dict(arrowstyle="<->", color=INK, lw=1.4))
+    mtext(fig, 0.73, 0.02, r"$\lambda \approx 1$: a group the walker stays in", va="top")
+    mtext(fig, 0.01, 0.02, r"$H[x,y] = P(\mathrm{walker\ steps\ from}\ x\ \mathrm{to}\ y)$",
+          va="top")
     ax.text(3.9, (lam[2] + lam[3]) / 2, "gap → 3 groups", ha="left", va="center",
             fontsize=BASE - 1, color=INK)
     ax.set_title("How slowly each pattern fades", loc="left", fontsize=BASE + 1,

@@ -22,10 +22,14 @@ def make():
     ax.text(6.0, 3.9, "what you need to remember", ha="center", color=STATE, fontsize=BASE)
     ax.text(6.0, k["top"] + 0.14, f"keep the top r = {r}", ha="center", va="bottom",
             color=STATE, fontsize=BASE, fontweight="bold")
-    ax.annotate("drop the rest,\nwith a guaranteed error bound", xy=(6.0, k["tail_bot"] - 0.04),
-                xytext=(6.0, 0.05), ha="center", va="bottom", color=MUTED,
+    mtext(ax, 6.0, 0.02, r"error $\sim\ \sigma_{r+1},\ \sigma_{r+2},\ \ldots$", ha="center",
+          va="bottom")
+    ax.annotate("drop the rest", xy=(6.0, k["tail_bot"] - 0.04),
+                xytext=(6.0, 0.42), ha="center", va="bottom", color=MUTED,
                 fontsize=BASE - 2,
                 arrowprops=dict(arrowstyle="-", color=MUTED, lw=1.0, shrinkA=2, shrinkB=2))
+    mtext(ax, 6.0, -0.35, r"$H[p,\,f] = \langle\, s(p),\ g(f)\, \rangle,\qquad s(p) \in \mathbb{R}^r$",
+          ha="center", va="center", fs=MATH_FS + 1)
     save(fig, "bowtie.png")
 
 

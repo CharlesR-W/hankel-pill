@@ -363,10 +363,8 @@ fundamental rather than a trick.
   correlations.
   Ruelle, *Thermodynamic Formalism* (1978); Baladi, *Positive Transfer Operators and Decay of
   Correlations* (2000).
-- **Primes and closed geodesics.** The **Selberg trace formula** (1956) equates a sum over the
-  Laplace eigenvalues of a hyperbolic surface with a sum over its closed geodesics. It has the same
-  shape as the explicit formula relating zeros of the Riemann zeta function to primes, which is one
-  root of the Langlands program and of the Hilbert–Pólya hope that the zeta zeros are a spectrum.
+- **Spectra and closed geodesics.** The **Selberg trace formula** (1956) equates a sum over the
+  Laplace eigenvalues of a hyperbolic surface with a sum over its closed geodesics.
   The Ruelle zeta function does the same for periodic orbits of chaotic maps: *spectrum ↔ periodic
   orbits* is a theme, and the transfer operator is its engine.
 - **Can you hear the shape of a drum?** (Kac 1966.) How much of a geometry is determined by its
@@ -399,7 +397,7 @@ fundamental rather than a trick.
 **Deep.** The same construction is a theorem in automata theory (Myhill–Nerode, Fliess), in control
 (Ho–Kalman), in ergodic theory (Koopman–von Neumann), in spectral geometry (Cheeger), in statistics
 (Akaike's CCA realization) and in stochastic processes (causal states). It touches open decidability
-problems (Skolem), the PCP theorem, the Langlands program and quantum mechanics. Ideas that show up
+problems (Skolem), the PCP theorem and quantum mechanics. Ideas that show up
 independently in this many places are usually tracking something real.
 
 **Natural.** It answers the most basic modelling question, "what about the past matters for the
